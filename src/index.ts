@@ -1,3 +1,4 @@
+import { printPostStatus } from "./postUtils";
 import { User, Post } from "./types";
 
 const sampleUser: User = {
@@ -69,3 +70,5 @@ const updatedSamplePosts: Post[] = [
 ];
 
 // TODO-3: printPostStatus 함수를 import 해서 updatedSamplePosts의 각 포스트의 상태를 출력하세요
+updatedSamplePosts.map((post) => printPostStatus(post));
+updatedSamplePosts.map(printPostStatus);

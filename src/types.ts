@@ -13,13 +13,40 @@ export type User = {
 // type DraftPost = { status: 'draft', ...기존 Post 속성 (id 제외) };
 // type PublishedPost = { status: 'published', publishedDate: Date, ...기존 Post 속성(id 제외) };
 // type ArchivedPost = { status: 'archived', archivedDate: Date, ...기존 Post 속성(id 제외) };
-// type Post = { id: number } & (DraftPost | PublishedPost | ArchivedPost);
 
-export type Post = {
-  id: number;
+type DraftPost = {
+  status: "draft";
   title: string;
   content: string;
   authorId: number;
   tags: string[];
-  status: "draft" | "published" | "archived";
 };
+
+type PublishedPost = {
+  status: "published";
+  publishedDate: Date;
+  title: string;
+  content: string;
+  authorId: number;
+  tags: string[];
+};
+
+type ArchivedPost = {
+  status: "archived";
+  archivedDate: Date;
+  title: string;
+  content: string;
+  authorId: number;
+  tags: string[];
+};
+
+export type Post = { id: number } & (DraftPost | PublishedPost | ArchivedPost);
+
+// export type Post = {
+//   id: number;
+//   title: string;
+//   content: string;
+//   authorId: number;
+//   tags: string[];
+//   status: "draft" | "published" | "archived";
+// };
