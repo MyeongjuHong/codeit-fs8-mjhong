@@ -21,14 +21,17 @@ export function printPostStatus(post: Post) {
 }
 
 // TODO-2: 아래 3가지 사용자 정의 타입 가드 함수를 완성하세요
-function isPublishedPost(post: Post) {
+export function isPublishedPost(post: Post) {
   // post 상태가 published 인지 확인하는 타입 가드 함수 작성하세요
+  return post.status === "published";
 }
 
-function isDraftPost(post: Post) {
+export function isDraftPost(post: Post) {
   // post 상태가 draft 인지 확인하는 타입 가드 함수 작성하세요
+  return post.status === "draft";
 }
 
-function isArchivedPost(post: Post) {
+export function isArchivedPost(post: Post) {
   // post 상태가 archived 인지 확인하는 타입 가드 함수 작성하세요
+  return post.status === "archived";
 }

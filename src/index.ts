@@ -1,4 +1,4 @@
-import { printPostStatus } from "./postUtils";
+import { isPublishedPost, printPostStatus } from "./postUtils";
 import { User, Post } from "./types";
 
 const sampleUser: User = {
@@ -50,4 +50,6 @@ const updatedSamplePosts: Post[] = [
 updatedSamplePosts.forEach(printPostStatus);
 
 // TODO-3: 발행된 포스트의 제목만 출력하는 코드를 작성하세요.
-// updatedSamplePosts.forEach();
+updatedSamplePosts.forEach((post) => {
+  if (isPublishedPost(post)) console.log(post.title);
+});
