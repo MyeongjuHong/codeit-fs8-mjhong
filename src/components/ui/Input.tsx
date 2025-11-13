@@ -4,6 +4,17 @@
 // type 은 union type 으로 "text" | "number" | "email" | "password" 으로 정의하세요.
 // ref 는 React.Ref<HTMLInputElement> 으로 정의하세요.
 
+interface InputProps {
+  type: string;
+  value: {};
+  onChange: function
+  placeholder: string;
+  required: boolean;
+  name: string;
+  className :string;
+  ref: string;
+}
+
 export default function Input({
   type = "text",
   value,

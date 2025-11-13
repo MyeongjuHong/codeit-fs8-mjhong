@@ -4,14 +4,20 @@ import { useState, useRef } from "react";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
+import { Post } from "@/types";
 
 // TODO-3: props 타입을 정의하세요. interface 사용하세요.
+interface PostFormProps {
+  onSubmit: () => {};
+  initialData: Partial<Post>;
+  isLoading: boolean;
+}
 
 export default function PostForm({
   onSubmit,
   initialData = {},
   isLoading = false,
-}: any) {
+}: PostFormProps) {
   // useState 타입 정의 예시
   const [formData, setFormData] = useState<any>({
     title: initialData.title || "",
