@@ -9,29 +9,29 @@ export type User = {
 };
 
 // TODO-2: DraftPost, PublishedPost, ArchivedPost 타입을 interface로 변경하세요
-type DraftPost = {
+interface DraftPost {
   status: "draft";
   title: string;
   content: string;
   authorId: number;
   tags: string[];
-};
-type PublishedPost = {
+}
+interface PublishedPost {
   status: "published";
   title: string;
   content: string;
   authorId: number;
   tags: string[];
   publishedDate: Date;
-};
-type ArchivedPost = {
+}
+interface ArchivedPost {
   status: "archived";
   title: string;
   content: string;
   authorId: number;
   tags: string[];
   archivedDate: Date;
-};
+}
 export type Post = { id: number } & (DraftPost | PublishedPost | ArchivedPost);
 
 export type GetPostsFunc = (authorId?: number) => Post[];
@@ -50,9 +50,13 @@ export type UpdatePostFunc = (
     authorId?: number;
     tags?: string[];
     publishedDate?: Date;
-  },
+  }
 ) => Post | undefined;
 export type DeletePostFunc = (id: number) => boolean;
 
 // TODO-3: User 인터페이스를 확장한 Author 인터페이스를 정의하세요
 // 추가되는 속성 bio?, posts
+interface Author extends User {
+  bio?: string;
+  posts: Post[];
+}
