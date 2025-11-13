@@ -53,3 +53,4 @@ updatedSamplePosts.forEach(printPostStatus);
 updatedSamplePosts.forEach((post) => {
   if (isPublishedPost(post)) console.log(post.title);
 });
+// 브랜치명 수정
