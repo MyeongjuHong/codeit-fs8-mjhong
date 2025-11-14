@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 type FormData = {
@@ -27,7 +26,7 @@ export default function LoginFormWithForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <h2>로그인 (useState 버전)</h2>
+      <h2>로그인 (react-hook-form 버전)</h2>
 
       <div>
         <input
