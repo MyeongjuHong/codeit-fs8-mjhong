@@ -1,13 +1,14 @@
+import { User } from "@prisma/client";
 import userRepository from "../repositories/userRepository.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-async function createUser(user) {
+import { ServerError, ValidationError } from "../types/errors.js";
+
+async function createUser(user: User) {
   try {
     const existedUser = await userRepository.findByEmail(user.email);
     if (existedUser) {
-      const error = new Error("User already exists");
-      error.code = 422;
-      error.data = { email: user.email };
+      const error = new ValidationError("User already exists");
       throw error;
     }
 
@@ -18,11 +19,14 @@ async function createUser(user) {
     });
     return filterSensitiveUserData(createdUser);
   } catch (error) {
-    if (error.code === 422) throw error; // 기존의 중복 체크 에러는 그대로 전달
+    if (error instanceof ValidationError) {
+      throw error; // 기존의 중복 체크 에러는 그대로 전달
+    }
 
     // Prisma 에러를 애플리케이션에 맞는 형식으로 변환
-    const customError = new Error("데이터베이스 작업 중 오류가 발생했습니다");
-    customError.code = 500;
+    const customError = new ServerError(
+      "데이터베이스 작업 중 오류가 발생했습니다"
+    );
     throw customError;
   }
 }
