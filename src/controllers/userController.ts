@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
-import userService from "../services/userService.js";
+import userService from "../services/userService";
 import auth from "../middlewares/auth.js";
 import passport from "../config/passport.js";
 import { ValidationError } from "../types/errors";
@@ -12,13 +12,13 @@ userController.post(
   async (
     req: Request<{}, {}, Pick<User, "email" | "name" | "password">>,
     res: Response,
-    next: NextFunction,
+    next: NextFunction
   ) => {
     try {
       const { email, name, password } = req.body;
       if (!email || !name || !password) {
         const error = new ValidationError(
-          "email, name, password 가 모두 필요합니다.",
+          "email, name, password 가 모두 필요합니다."
         );
         throw error;
       }
@@ -27,7 +27,7 @@ userController.post(
     } catch (error) {
       next(error);
     }
-  },
+  }
 );
 
 userController.post(
@@ -35,13 +35,13 @@ userController.post(
   async (
     req: Request<{}, {}, Pick<User, "email" | "password">>,
     res: Response,
-    next: NextFunction,
+    next: NextFunction
   ) => {
     const { email, password } = req.body;
     try {
       if (!email || !password) {
         const error = new ValidationError(
-          "email, password 가 모두 필요합니다.",
+          "email, password 가 모두 필요합니다."
         );
         throw error;
       }
@@ -59,7 +59,7 @@ userController.post(
     } catch (error) {
       next(error);
     }
-  },
+  }
 );
 
 userController.post(
@@ -68,7 +68,7 @@ userController.post(
   passport.authenticate("local"),
   (req: Request, res: Response) => {
     res.json(req.user);
-  },
+  }
 );
 
 userController.post(
@@ -91,7 +91,7 @@ userController.post(
     } catch (error) {
       next(error);
     }
-  },
+  }
 );
 
 export default userController;

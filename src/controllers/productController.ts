@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
 import auth from "../middlewares/auth.js";
-import productService from "../services/productService.js";
+import productService from "../services/productService";
 
 const productController = express.Router();
 
@@ -10,7 +10,7 @@ productController.post(
   async (req: Request, res: Response, next: NextFunction) => {
     const createdProduct = await productService.create(req.body);
     res.json(createdProduct);
-  },
+  }
 );
 
 productController.get(
@@ -19,7 +19,7 @@ productController.get(
     const { id } = req.params;
     const product = await productService.getById(id);
     res.json(product);
-  },
+  }
 );
 
 export default productController;

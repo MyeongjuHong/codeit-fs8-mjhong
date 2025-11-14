@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
 import passport from "../config/passport.js";
-import reviewService from "../services/reviewService.js";
+import reviewService from "../services/reviewService";
 import auth from "../middlewares/auth.js";
 
 const reviewController = express.Router();
@@ -19,7 +19,7 @@ reviewController.post(
     } catch (error) {
       next(error);
     }
-  },
+  }
 );
 
 reviewController.get(
@@ -32,7 +32,7 @@ reviewController.get(
     } catch (error) {
       next(error);
     }
-  },
+  }
 );
 
 reviewController.get(
@@ -44,7 +44,7 @@ reviewController.get(
     } catch (error) {
       next(error);
     }
-  },
+  }
 );
 
 reviewController.put(
@@ -58,7 +58,7 @@ reviewController.put(
     } catch (error) {
       next(error);
     }
-  },
+  }
 );
 
 reviewController.delete(
@@ -72,7 +72,7 @@ reviewController.delete(
     } catch (error) {
       next(error);
     }
-  },
+  }
 );
 
 export default reviewController;

@@ -1,5 +1,5 @@
 import { Strategy as LocalStrategy } from "passport-local";
-import userService from "../../services/userService.js";
+import userService from "../../services/userService";
 
 const localStrategy = new LocalStrategy(
   {
@@ -15,7 +15,7 @@ const localStrategy = new LocalStrategy(
     } catch (error) {
       return done(error); // DB 오류 발생시 에러 반환
     }
-  },
+  }
 );
 
 export default localStrategy;
