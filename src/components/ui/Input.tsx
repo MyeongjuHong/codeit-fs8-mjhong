@@ -5,14 +5,14 @@
 // ref 는 React.Ref<HTMLInputElement> 으로 정의하세요.
 
 interface InputProps {
-  type: string;
-  value: {};
-  onChange: function
+  type: "text" | "number" | "email" | "password";
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
   required: boolean;
   name: string;
   className :string;
-  ref: string;
+  ref: React.Ref<HTMLInputElement>;
 }
 
 export default function Input({
@@ -25,7 +25,7 @@ export default function Input({
   className = "",
   ref,
   ...props
-}: any) {
+}: InputProps) {
   const baseStyles =
     "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent";
 

@@ -4,7 +4,7 @@
 // options 는 { value: number; label: string }[] 으로 정의하세요.
 interface SelectProps {
   value: string,
-  onChange: function,
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void,
   options: {value: number, label: string}[],
   placeholder?: string,
   required : boolean,
