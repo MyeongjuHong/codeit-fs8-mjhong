@@ -17,7 +17,7 @@ export default function PostDetail({ post }: PostDetailProps) {
   const [error, setError] = useState<string | null>(null);
 
   // 이벤트 타입 정의 예시
-  const handleDelete = async (event: any): Promise<void> => {
+  const handleDelete = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
     event.preventDefault();
 
     if (!confirm("정말로 이 게시글을 삭제하시겠습니까?")) {
