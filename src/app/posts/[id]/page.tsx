@@ -4,11 +4,13 @@ import { fetchPost } from "@/lib/api";
 
 // TODO-1: props 타입을 정의하세요. interface 사용하세요.
 interface PostPageProps {
-  params: number;
+  params: {
+    id: number;
+  };
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-  const { id } = await params;
+  const { id } = params;
   if (!id) {
     notFound();
   }
