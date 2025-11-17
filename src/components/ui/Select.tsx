@@ -5,8 +5,8 @@
 interface SelectProps {
   value: string,
   onChange: function,
-  options: [],
-  placeholder: string,
+  options: {value: number, label: string}[],
+  placeholder?: string,
   required : boolean,
   name: string,
   className: string,

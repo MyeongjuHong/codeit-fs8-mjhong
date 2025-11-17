@@ -8,10 +8,16 @@ import { Post } from "@/types";
 
 // TODO-3: props 타입을 정의하세요. interface 사용하세요.
 interface PostFormProps {
-  onSubmit: () => {};
+  onSubmit: (query: FormData) => void;
   initialData: Partial<Post>;
   isLoading: boolean;
 }
+
+type FormData = {
+  authorId: number;
+  title: string;
+  content: string;
+} // Partial로 하면 유효성 검증에 undefined가 나올 수 있어 타입 확언을 하거나 따로 formData를 만들어야 함
 
 export default function PostForm({
   onSubmit,
@@ -19,40 +25,40 @@ export default function PostForm({
   isLoading = false,
 }: PostFormProps) {
   // useState 타입 정의 예시
-  const [formData, setFormData] = useState<any>({
+  const [formData, setFormData] = useState<FormData>({
     title: initialData.title || "",
     content: initialData.content || "",
     authorId: initialData.authorId || 1,
   });
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
 
   // useRef 타입 정의 예시
   const titleInputRef = useRef<HTMLInputElement>(null);
   const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
 
   // 이벤트 타입 정의 예시들
-  const handleTitleChange = (event: any): void => {
-    setFormData((prev: any) => ({
+  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setFormData((prev: FormData) => ({
       ...prev,
       title: event.target.value,
     }));
   };
 
-  const handleContentChange = (event: any): void => {
-    setFormData((prev: any) => ({
+  const handleContentChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
+    setFormData((prev: FormData) => ({
       ...prev,
       content: event.target.value,
     }));
   };
 
-  const handleAuthorChange = (event: any): void => {
-    setFormData((prev: any) => ({
+  const handleAuthorChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setFormData((prev: FormData) => ({
       ...prev,
       authorId: Number(event.target.value),
     }));
   };
 
-  const handleSubmit = async (event: any): Promise<void> => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     setError(null);
 
@@ -135,7 +141,7 @@ export default function PostForm({
         </label>
         <Select
           name="authorId"
-          value={formData.authorId}
+          value={formData.authorId+""}
           onChange={handleAuthorChange}
           options={authorOptions}
           required
