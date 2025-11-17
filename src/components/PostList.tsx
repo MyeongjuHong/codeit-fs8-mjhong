@@ -5,12 +5,13 @@ import Link from "next/link";
 import { fetchPosts } from "@/lib/api";
 import Button from "@/components/ui/Button";
 import PostItem from "@/components/PostItem";
+import { Post } from "@/types";
 
 export default function PostList() {
   // useState 타입 정의 예시
-  const [posts, setPosts] = useState<any[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
 
   // useEffect 타입 정의 예시
   useEffect((): void => {
@@ -23,7 +24,7 @@ export default function PostList() {
     setError(null);
     setLoading(true);
     try {
-      const fetchedPosts: any[] = await fetchPosts();
+      const fetchedPosts: Post[] = await fetchPosts();
       setPosts(fetchedPosts);
     } catch (err) {
       const errorMessage: string =
